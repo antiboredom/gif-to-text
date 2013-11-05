@@ -4,6 +4,8 @@ class Sentence {
   String[] wordlist;
   String words;
 
+  boolean loaded = false;
+
   Sentence(String _words) {
     words = _words;
     wordlist = splitTokens(words, " ,.-?!:");
@@ -25,6 +27,12 @@ class Sentence {
       gif.resizeHeight((height - gifs.size() * 20) / gifs.size());
       gif.loc.y = gif.h * j + 10 * j + 10;
       gif.loc.x = width / 2 - gif.w;
+    }
+  }
+
+  void update() {
+    for (MyGif g : gifs) {
+      loaded = g.loaded;
     }
   }
 

@@ -11,8 +11,8 @@ String[] words;
 int lastUpdated;
 int startAt = 0;
 int incrementBy = 5;
-int slideTime = 2500;
-Sentence sentence;
+int slideTime = 3500;
+Sentence sentence, nextSentence;
 PFont font;
 boolean looping = true;
 //animal farm
@@ -33,11 +33,11 @@ void setup() {
   applet = this;
 
   font = loadFont("ArialNarrow-Bold-90.vlw");
-
-  makeSentence();
+  sentence = makeSentence();
+  nextSentence = makeSentence();
 }
 
-void makeSentence() {
+Sentence makeSentence() {
   String newSentence = "";
   for (int i = startAt; i < startAt + incrementBy; i++) {
     if (i < words.length - 1) {
@@ -50,21 +50,24 @@ void makeSentence() {
   else {
     startAt += incrementBy;
   }
-
-  sentence = new Sentence(newSentence);
-
+  return new Sentence(newSentence);
 }
 
 void draw() {
   background(255);
-
-  sentence.display();
-
-  if (millis() - lastUpdated > slideTime) {
-    lastUpdated = millis();
-    makeSentence();
-  }
   
+  sentence.update();
+  nextSentence.update();
+  
+  if (sentence.loaded) {
+    sentence.display();
+  }
+
+  if (millis() - lastUpdated > slideTime && nextSentence.loaded) {
+    lastUpdated = millis();
+    sentence = nextSentence;
+    nextSentence = makeSentence();
+  }
 }
 
 void keyReleased() {
