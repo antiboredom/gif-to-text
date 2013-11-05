@@ -33,7 +33,7 @@ class Sentence {
     for (MyGif g : gifs) {
       g.display();
     }
-        fill(238, 52, 36);
+    fill(238, 52, 36);
 
     //textFont(font, 120);
     //text(words.toUpperCase(), width/2 + 20, 20, width/2 -40, height-40);
@@ -43,3 +43,4 @@ class Sentence {
     //text(join(split(words.toUpperCase(), " "), "\n"), width/2 + 20, 20, width/2 -40, height-40);
   }
 }
+

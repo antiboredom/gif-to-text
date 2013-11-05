@@ -14,7 +14,7 @@ int incrementBy = 5;
 int slideTime = 2500;
 Sentence sentence;
 PFont font;
-boolean looping = false;
+boolean looping = true;
 //animal farm
 //fox news for dumbies
 //gawker
@@ -35,7 +35,6 @@ void setup() {
   font = loadFont("ArialNarrow-Bold-90.vlw");
 
   makeSentence();
-  noLoop();
 }
 
 void makeSentence() {
